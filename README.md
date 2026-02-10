@@ -7,24 +7,32 @@ This system demonstrates service-to-service communication, API Gateway routing, 
 🧠 Architecture Overview
 
 
-                    ┌────────────────────┐
-                    │   Eureka Server    │
-                    │ (Service Registry) │
-                    └─────────┬──────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-        
- ┌─────────────┐     ┌─────────────┐       ┌─────────────┐
- │ API GATEWAY │────▶│ HOTEL-SVC   │       │ USER-SVC    │
- │  (8080)     │     │ (8081)      │       │ (8084)      │
- └──────┬──────┘     └─────────────┘       └─────────────┘
-        │
-        │
- ┌─────────────┐     ┌─────────────┐      ┌─────────────┐
- │ BOOKING-SVC │────▶│ PAYMENT-SVC │────▶ │NOTIFICATION │
- │  (8082)     │     │ (8083)      │      │   (8085)    │
- └─────────────┘     └─────────────┘      └─────────────┘
+                                             ┌────────────────────────┐
+                           │     EUREKA SERVER      │
+                           │   (Service Registry)   │
+                           │        :8761           │
+                           └──────────┬─────────────┘
+                                      │
+                                      │ Service Registration
+                                      ▼
+                         ┌────────────────────────┐
+                         │       API GATEWAY      │
+                         │   Routing & Security   │
+                         │         :8080          │
+                         └──────────┬─────────────┘
+                                    │
+        ┌───────────────┬───────────┼───────────┬───────────────┐
+        │               │           │           │               │
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│ HOTEL-SVC   │ │ USER-SVC    │ │ BOOKING-SVC │ │ PAYMENT-SVC │ │NOTIFICATION │
+│   :8081     │ │   :8084     │ │   :8082     │ │   :8083     │ │   :8085     │
+└──────┬──────┘ └──────┬──────┘ └──────┬──────┘ └──────┬──────┘ └──────┬──────┘
+       │                │                │                │                │
+       ▼                ▼                ▼                ▼                ▼
+
+   MySQL DB         MySQL DB         MySQL DB         MySQL DB         MySQL DB
+ (hotel_db)       (user_db)       (booking_db)      (payment_db)    (notification_db)
+
 
 
 

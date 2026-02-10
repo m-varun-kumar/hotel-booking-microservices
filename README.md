@@ -5,6 +5,8 @@ A complete Microservices-based Hotel Booking System built using Spring Boot & Sp
 This system demonstrates service-to-service communication, API Gateway routing, service discovery using Eureka, and MySQL database integration — similar to production-level backend systems used in companies like Walmart, Google, and Amazon.
 
 🧠 Architecture Overview
+
+
                     ┌────────────────────┐
                     │   Eureka Server    │
                     │ (Service Registry) │
@@ -12,6 +14,7 @@ This system demonstrates service-to-service communication, API Gateway routing, 
                               │
         ┌─────────────────────┼─────────────────────┐
         │                     │                     │
+        
  ┌─────────────┐     ┌─────────────┐       ┌─────────────┐
  │ API GATEWAY │────▶│ HOTEL-SVC   │       │ USER-SVC    │
  │  (8080)     │     │ (8081)      │       │ (8084)      │
@@ -22,6 +25,8 @@ This system demonstrates service-to-service communication, API Gateway routing, 
  │ BOOKING-SVC │────▶│ PAYMENT-SVC │────▶ │NOTIFICATION │
  │  (8082)     │     │ (8083)      │      │   (8085)    │
  └─────────────┘     └─────────────┘      └─────────────┘
+
+
 
                 MySQL Databases for each service
 All services register with Eureka Server
